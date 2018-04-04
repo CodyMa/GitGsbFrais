@@ -19,6 +19,7 @@ class ConnexionController extends Controller
     public function indexAction()
     {
         return $this->render('connexion/connexion.html.twig');
+        //rerazrazefaze
     }
 
     public function registerAction(Request $request)
