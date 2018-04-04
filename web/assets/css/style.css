@@ -1,0 +1,17 @@
+.btn-primary{
+    border-radius: 30px;
+    width: 150px;
+    height: 57px;
+    font-weight: bold;
+    background-color: Transparent;
+    transition-duration: 0.2s;
+    border: 1px #28a745 solid;
+    color : #28a745;
+
+}
+
+.btn-primary:hover{
+    background-color: #28a745 ;
+    border: Transparent;
+    transition-duration: 0.4s;
+}

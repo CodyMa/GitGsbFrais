@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% block stylsheet %}
+    {{ parent() }}
+        <style>
+            body {
+                background-attachment:fixed;
+                background-repeat:no-repeat; /*ne pas répéter l'image*/
+                -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+                -moz-background-size: cover; /* pour mozilla */
+                -o-background-size: cover; /* pour opera */
+                background-size: cover; /* version standardisée : Remplire toute la page */
+                background-position: center;
+                {#background-position:left top;#}
+            }
+            body:before{
+                content: "";
+                position: fixed;
+                height: 100%; width: 100%;
+                background: url({{ asset('assets/img/fondGsbFrais1.jpg') }});
+                background-size: cover;
+                z-index: -1; /* Keep the background behind the content */
+                -webkit-filter: blur(4px);
+                -webkit-background-size: cover; /* pour Chrome et Safari */
+                -moz-background-size: cover; /* pour Firefox */
+                -o-background-size: cover; /* pour Opera */
+                background-size: cover; /* version standardisée */
+
+            }
+
+            .container1, .container2{
+                padding: 40px;
+                opacity: 0.8;
+            }
+
+            .jumbotron{
+                border-radius: 11px;
+            }
+        </style>
+
+    {% endblock %}
+
+    {% block header %}
+        {{ parent() }}
+    {% endblock header%}
+
+    {% block main %}
+        <div class="container1">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container2">
+                    <h1 class="display-4">GsbFrais</h1>
+                    <hr>
+                    <p class="lead">Cette application est déstinée aux visiteurs médicaux et au personnel du service comptable.</p>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block footer %}
+        {{ parent() }}
+    {% endblock footer %}
+
+    {% block javascripts %}
+        {{ parent() }}
+    {% endblock javascripts %}
+
+{% endblock %}

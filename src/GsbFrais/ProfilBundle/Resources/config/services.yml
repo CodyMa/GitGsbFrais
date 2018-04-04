@@ -1,0 +1,4 @@
+services:
+#    gsb_frais_profil.example:
+#        class: GsbFrais\ProfilBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

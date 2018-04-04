@@ -1,0 +1,15 @@
+gsb_frais_profil:
+    resource: "@GsbFraisProfilBundle/Resources/config/routing.yml"
+    prefix:   /
+
+gsb_frais_connexion:
+    resource: "@GsbFraisConnexionBundle/Resources/config/routing.yml"
+    prefix:   /
+
+gsb_frais_accueil:
+    resource: "@GsbFraisAccueilBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

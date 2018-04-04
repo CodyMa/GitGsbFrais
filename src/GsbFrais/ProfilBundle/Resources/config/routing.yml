@@ -1,0 +1,3 @@
+gsb_profil_homepage:
+    path:     /profil
+    defaults: { _controller: GsbFraisProfilBundle:GestionProfil:index }

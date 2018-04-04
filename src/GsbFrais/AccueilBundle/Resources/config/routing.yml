@@ -1,0 +1,3 @@
+gsb_frais_accueil:
+    path:     /
+    defaults: { _controller: GsbFraisAccueilBundle:Accueil:index }

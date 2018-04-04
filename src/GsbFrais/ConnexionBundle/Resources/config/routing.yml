@@ -1,0 +1,3 @@
+gsb_frais_connexion:
+    path:     /connexion
+    defaults: { _controller: GsbFraisConnexionBundle:Connexion:register }

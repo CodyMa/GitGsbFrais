@@ -1,0 +1,4 @@
+services:
+#    gsb_frais_connexion.example:
+#        class: GsbFrais\ConnexionBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
