@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93448e02-6aab-48c0-b74a-4d217a4e1913" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.README.md.swp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="93448e02-6aab-48c0-b74a-4d217a4e1913" name="Default" comment="test commit phpStorm 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,10 +49,14 @@
       <file leaf-file-name="ConnexionController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GsbFrais/ConnexionBundle/Controller/ConnexionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+            <state relative-caret-position="240">
+              <caret line="67" column="43" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
               <folding>
                 <element signature="e#55#100#0#PHP" expanded="true" />
+                <element signature="e#789#820#1#PHP" expanded="true" />
+                <element signature="e#2135#2169#1#PHP" expanded="true" />
+                <element signature="e#2901#2932#0#PHP" expanded="true" />
+                <element signature="e#3353#3384#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -155,12 +156,12 @@
         <option value="$PROJECT_DIR$/web/assets/css/style.css" />
         <option value="$PROJECT_DIR$/app/Resources/views/connexion/connexion.html.twig" />
         <option value="$PROJECT_DIR$/src/GsbFrais/ConnexionBundle/Repository/VisiteurRepository.php" />
-        <option value="$PROJECT_DIR$/src/GsbFrais/ConnexionBundle/Controller/ConnexionController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/GsbFrais/ProfilBundle/Controller/GestionProfilController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/profil/profil.html.twig" />
         <option value="$PROJECT_DIR$/web/assets/css/styleProfil.css" />
         <option value="$PROJECT_DIR$/web/app_dev.php" />
+        <option value="$PROJECT_DIR$/src/GsbFrais/ConnexionBundle/Controller/ConnexionController.php" />
       </list>
     </option>
   </component>
@@ -314,26 +315,35 @@
       <workItem from="1522797178374" duration="865000" />
       <workItem from="1522836344318" duration="3792000" />
       <workItem from="1522840466430" duration="94000" />
-      <workItem from="1522840574995" duration="1302000" />
+      <workItem from="1522840574995" duration="1722000" />
     </task>
+    <task id="LOCAL-00001" summary="test commit phpStorm">
+      <created>1522842034337</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1522842034337</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96628000" />
+    <option name="totallyTimeSpent" value="97048000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1366" y="0" width="1440" height="900" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22955523" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32901555" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.50071734" side_tool="true" visible="true" weight="0.32901555" />
       <window_info anchor="right" id="Database" order="3" weight="0.32977587" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49928263" visible="true" weight="0.32901555" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32901555" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49928263" weight="0.32901555" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.2497332" />
@@ -348,8 +358,22 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test commit phpStorm" />
+    <option name="LAST_COMMIT_MESSAGE" value="test commit phpStorm" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -378,6 +402,10 @@
           <caret line="60" column="77" lean-forward="true" selection-start-line="60" selection-start-column="77" selection-end-line="60" selection-end-column="77" />
           <folding>
             <element signature="e#55#100#0#PHP" expanded="true" />
+            <element signature="e#789#820#1#PHP" expanded="true" />
+            <element signature="e#2135#2169#1#PHP" expanded="true" />
+            <element signature="e#2901#2932#0#PHP" expanded="true" />
+            <element signature="e#3353#3384#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -417,6 +445,10 @@
           <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
           <folding>
             <element signature="e#55#100#0#PHP" expanded="true" />
+            <element signature="e#789#820#1#PHP" expanded="true" />
+            <element signature="e#2135#2169#1#PHP" expanded="true" />
+            <element signature="e#2901#2932#0#PHP" expanded="true" />
+            <element signature="e#3353#3384#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -456,6 +488,10 @@
           <caret line="46" column="75" selection-start-line="46" selection-start-column="75" selection-end-line="46" selection-end-column="75" />
           <folding>
             <element signature="e#55#100#0#PHP" expanded="true" />
+            <element signature="e#789#820#1#PHP" expanded="true" />
+            <element signature="e#2135#2169#1#PHP" expanded="true" />
+            <element signature="e#2901#2932#0#PHP" expanded="true" />
+            <element signature="e#3353#3384#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -501,6 +537,10 @@
           <caret line="41" column="49" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
           <folding>
             <element signature="e#55#100#0#PHP" expanded="true" />
+            <element signature="e#789#820#1#PHP" expanded="true" />
+            <element signature="e#2135#2169#1#PHP" expanded="true" />
+            <element signature="e#2901#2932#0#PHP" expanded="true" />
+            <element signature="e#3353#3384#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -649,10 +689,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GsbFrais/ConnexionBundle/Controller/ConnexionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+        <state relative-caret-position="240">
+          <caret line="67" column="43" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
           <folding>
             <element signature="e#55#100#0#PHP" expanded="true" />
+            <element signature="e#789#820#1#PHP" expanded="true" />
+            <element signature="e#2135#2169#1#PHP" expanded="true" />
+            <element signature="e#2901#2932#0#PHP" expanded="true" />
+            <element signature="e#3353#3384#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
