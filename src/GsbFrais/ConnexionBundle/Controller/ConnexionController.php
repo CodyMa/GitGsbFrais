@@ -19,7 +19,6 @@ class ConnexionController extends Controller
     public function indexAction()
     {
         return $this->render('connexion/connexion.html.twig');
-        //rest
     }
 
     public function registerAction(Request $request)
