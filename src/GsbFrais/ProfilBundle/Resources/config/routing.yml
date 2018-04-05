@@ -1,3 +1,7 @@
 gsb_profil_homepage:
     path:     /profil
     defaults: { _controller: GsbFraisProfilBundle:GestionProfil:index }
+
+gsb_profil_saisie_frais:
+    path:     /saisieFrais
+    defaults: { _controller: GsbFraisProfilBundle:SaisirFrais:index}

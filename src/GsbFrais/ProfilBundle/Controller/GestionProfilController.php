@@ -14,9 +14,6 @@ class GestionProfilController extends Controller
         //echo $session->get('id');
 
 
-
-
-
         return $this->render(
             'profil/profil.html.twig',
             array(

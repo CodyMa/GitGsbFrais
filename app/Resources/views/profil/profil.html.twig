@@ -3,7 +3,11 @@
     {% block stylsheet %}
         {{ parent() }}
         <link rel="stylesheet" href="{{ asset('assets/css/styleProfil.css') }}">
-
+        <style>
+            /*nav {
+                background-color: red;
+            }*/
+        </style>
     {% endblock %}
 
     {% block header %}
@@ -28,8 +32,8 @@
 
                 <div class="my-0 my-lg-0" id="Np">
                     {% block headerRight %}
-                        {#<a href="#">{{ app.session.get('nom') }} {{ app.session.get('prenom') }} <i class="far fa-user"></i></a>#}
-                        <a>{{ nom }} {{ prenom }}  <i class="far fa-user"></i></a>
+                        <a href="#">{{ app.session.get('nom') }} {{ app.session.get('prenom') }} <i class="far fa-user"></i></a>
+                        {#<a>{{ nom }} {{ prenom }}  <i class="far fa-user"></i></a>#}
                     {% endblock %}
                 </div>
 
@@ -38,66 +42,80 @@
     {% endblock header%}
 
     {% block main %}
-        {% block menu %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4 col-md-3">
+                    {% block menu %}
+                            <div class="container-fluid">
+                                <div class ='row'>
+                                    <nav class="col-sm hidden-xs-down bg-faded sidebar">
+                                        <div id="navLateral">
+                                        <ul class="nav nav-pills flex-column">
+                                            <li class="nav-item" >
+                                                <a class="nav-link active" href="#">Menu<span class="sr-only">(current)</span><i class="fas fa-angle-left"></i></a>
+                                            </li>
 
-                <div class="container-fluid">
-                    <div class ='row'>
-                        <nav class="col-sm-4 col-md-3 hidden-xs-down bg-faded sidebar">
-                            <div id="navLateral">
-                            <ul class="nav nav-pills flex-column">
-                                <li class="nav-item" >
-                                    <a class="nav-link active" href="#">Menu<span class="sr-only">(current)</span><i class="fas fa-angle-left"></i></a>
-                                </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">Rapport de Visite<i class="far fa-address-card"></i></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">Saisir rapport de visite<i class="far fa-edit"></i></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">Changer de mot de passe<i class="fas fa-key"></i></a>
+                                            </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Rapport de Visite<i class="far fa-address-card"></i></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Saisir rapport de visite<i class="far fa-edit"></i></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Changer de mot de passe<i class="fas fa-key"></i></a>
-                                </li>
+                                        </ul>
 
-                            </ul>
-
-                            <ul class="nav nav-pills flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Saisir fiche frais <i class="far fa-edit"></i> </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Consulter les frais <i class="fas fa-book"></i></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">TestMenu</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">TestMenu</a>
-                                </li>
-                            </ul>
+                                        <ul class="nav nav-pills flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">Saisir fiche frais <i class="far fa-edit"></i> </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">Consulter les frais <i class="fas fa-book"></i></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">TestMenu</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">TestMenu</a>
+                                            </li>
+                                        </ul>
 
 
-                            <ul class="nav nav-pills flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">TestMenu</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">TestMenu</a>
-                                </li>
+                                        <ul class="nav nav-pills flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">TestMenu</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">TestMenu</a>
+                                            </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Se déconnecter <i class="fas fa-power-off"></i></a>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">Se déconnecter <i class="fas fa-power-off"></i></a>
 
-                                </li>
-                            </ul>
+                                            </li>
+                                        </ul>
 
+                                        </div>
+                                    </nav>
+                                </div>
                             </div>
-                        </nav>
-                    </div>
+                    {% endblock menu %}
                 </div>
 
 
-        {% endblock menu %}
+
+                <div class="col-sm">
+                    {% block contenu %}
+                    {% endblock contenu %}
+                </div>
+                <div class="col-sm-4 col-md-3">
+                    {% block affichage %}
+                    {% endblock affichage %}
+                </div>
+            </div>
+        </div>
     {% endblock %}
 
     {% block footer %}
