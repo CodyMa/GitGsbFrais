@@ -59,6 +59,7 @@ class ConnexionController extends Controller
                         $session->set('prenom', $unVisiteur->getPrenom());
                         dump($session);
                         return $this->redirectToRoute('gsb_profil_homepage');
+                        //lol
 
                     }
                 }
