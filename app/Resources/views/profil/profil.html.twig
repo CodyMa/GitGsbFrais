@@ -6,9 +6,7 @@
         <style>
             /*nav {
                 background-color: red;
-                // TEST MERGE INTO CURRENT DEPUIS MASTER
             }*/
-
         </style>
     {% endblock %}
 
@@ -22,7 +20,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('gsb_profil_homepage') }}">Accueil<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ path('gsb_frais_accueil') }}">Accueil<span class="sr-only">(current)</span></a>
                     </li>
                     <!--<li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
@@ -34,7 +32,7 @@
 
                 <div class="my-0 my-lg-0" id="Np">
                     {% block headerRight %}
-                        <a href="{{ path('gsb_frais_edit_user') }}">{{ app.session.get('nom') }} {{ app.session.get('prenom') }} <i class="far fa-user"></i></a>
+                        <a href="#">{{ app.session.get('nom') }} {{ app.session.get('prenom') }} <i class="far fa-user"></i></a>
                         {#<a>{{ nom }} {{ prenom }}  <i class="far fa-user"></i></a>#}
                     {% endblock %}
                 </div>
@@ -42,100 +40,63 @@
             </div>
         </nav>
     {% endblock header%}
+
     {% block main %}
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-4 col-md-3">
                     {% block menu %}
-                        <div class="container-fluid">
-                            <div class ='row'>
-                                <nav class="col-sm hidden-xs-down bg-faded sidebar">
-                                    <div id="navLateral">
+                            <div class="container-fluid">
+                                <div class ='row'>
+                                    <nav class="col-sm hidden-xs-down bg-faded sidebar">
+                                        <div id="navLateral">
                                         <ul class="nav nav-pills flex-column">
                                             <li class="nav-item" >
-                                                <a class="nav-link active" href="{{ path('gsb_profil_homepage') }}">Menu<i class="fas fa-angle-left"></i><span class="sr-only">(current)</span></a>
+                                                <a class="nav-link active" href="#">Menu<span class="sr-only">(current)</span><i class="fas fa-angle-left"></i></a>
                                             </li>
+
+                                            {#
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">Rapport de Visite<i class="far fa-address-card"></i></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">Saisir rapport de visite<i class="far fa-edit"></i></a>
+                                            </li>
+                                            #}
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">Changer de mot de passe<i class="fas fa-key"></i></a>
+                                            </li>
+
                                         </ul>
-                                        <hr>
 
                                         <ul class="nav nav-pills flex-column">
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ path('gsb_profil_saisie_frais') }}">Saisie des frais<i class="far fa-edit"></i></a>
+                                                <a class="nav-link" href="#">Saisir fiche frais <i class="far fa-edit"></i> </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ path('gsb_profil_afficher_mois') }}">Fiche du mois <i class="fas fa-book"></i></a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ path('gsb_profil_historique') }}">Historique <i class="fas fa-history"></i></a>
+                                                <a class="nav-link" href="#">Consulter les frais <i class="fas fa-book"></i></a>
                                             </li>
                                         </ul>
 
-                                        <hr>
-
-                                        <ul class="nav nav-pills flex-column">
-
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ path('gsb_frais_edit_mdp') }}">Changer de mot de passe <i class="fas fa-key"></i></a>
-                                            </li>
-
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ path('gsb_frais_accueil_deco') }}">Se déconnecter <i class="fas fa-power-off"></i></a>
+                                                <a class="nav-link" href="#">Se déconnecter <i class="fas fa-power-off"></i></a>
 
                                             </li>
                                         </ul>
 
-                                    </div>
-                                </nav>
+                                        </div>
+                                    </nav>
+                                </div>
                             </div>
-                        </div>
                     {% endblock menu %}
                 </div>
 
 
 
-                <div class="col-sm-9">
+                <div class="col-sm">
                     {% block contenu %}
 
-                        {% if modifCpt == true %}
-                            <div class="jumbotron jumbotron-fluid" style="padding: 3rem 3rem; margin-top: 5rem">
-                                <div class="container contAlign">
 
-                                    <table class="table">
-                                        <tr class="table-danger" >
-                                            <td ><h4> Compte modifié avec succès </h4></td>
-                                        </tr>
-                                    </table>
-
-                                </div>
-                            </div>
-
-                        {% elseif modifMdp == true %}
-                            <div class="jumbotron jumbotron-fluid" style="padding: 3rem 3rem; margin-top: 5rem">
-                                <div class="container contAlign">
-
-                                    <table class="table">
-                                        <tr class="table-danger" >
-                                            <td ><h4> Mot de passe modifié avec succès </h4></td>
-                                        </tr>
-                                    </table>
-
-                                </div>
-                            </div>
-
-                        {% else %}
-
-                            <div class="jumbotron jumbotron-fluid" style="padding: 10rem 3rem">
-                                <div class="container contAlign">
-                                    <h1> Accueil </h1>
-
-                                    <h4> Bienvenue sur votre espace : </h4>
-
-                                    <h6> Gestion des frais de visites </h6>
-                                    <!--ee-->
-                                </div>
-                            </div>
-
-                        {% endif %}
 
                     {% endblock contenu %}
                 </div>
