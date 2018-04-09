@@ -1,5 +1,5 @@
 .container-fluid{
-    padding-top: 4%;
+    padding-top: 2%;
 }
 #navLateral a {
     position: relative;
@@ -47,6 +47,7 @@
     border-left-width: 7px;
     border-color : #28a745 ;
 }
+
 
 
 .fa-power-off{
