@@ -22,9 +22,8 @@ class FicheFrais
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idVisiteur", type="integer", unique=true)
+     * @ORM\ManyToOne(targetEntity="GsbFrais\ConnexionBundle\Entity\Visiteur")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $idVisiteur;
 
@@ -72,30 +71,6 @@ class FicheFrais
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set idVisiteur
-     *
-     * @param integer $idVisiteur
-     *
-     * @return FicheFrais
-     */
-    public function setIdVisiteur($idVisiteur)
-    {
-        $this->idVisiteur = $idVisiteur;
-
-        return $this;
-    }
-
-    /**
-     * Get idVisiteur
-     *
-     * @return int
-     */
-    public function getIdVisiteur()
-    {
-        return $this->idVisiteur;
     }
 
     /**
