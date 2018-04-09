@@ -4,4 +4,4 @@ gsb_profil_homepage:
 
 gsb_profil_saisie_frais:
     path:     /saisieFrais
-    defaults: { _controller: GsbFraisProfilBundle:SaisirFrais:index}
+    defaults: { _controller: GsbFraisProfilBundle:SaisirFrais:saisir}

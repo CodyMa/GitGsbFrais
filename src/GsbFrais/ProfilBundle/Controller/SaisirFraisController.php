@@ -8,11 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class SaisirFraisController extends Controller
 {
-    public function Action(Request $request)
+    public function saisirAction(Request $request)
     {
         $session = $request->getSession();
         //echo $session->get('id');
-
+    //e
 
 
         return $this->render(
