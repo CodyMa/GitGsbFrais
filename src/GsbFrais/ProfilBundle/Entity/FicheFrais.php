@@ -23,7 +23,7 @@ class FicheFrais
 
     /**
      * @ORM\ManyToOne(targetEntity="GsbFrais\ConnexionBundle\Entity\Visiteur")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="visiteur_id", referencedColumnName="id")
      */
     private $idVisiteur;
 
@@ -56,9 +56,8 @@ class FicheFrais
     private $dateModif;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="idEtat", type="integer", unique=true)
+     * @ORM\ManyToOne(targetEntity="GsbFrais\ProfilBundle\Entity\Etat")
+     * @ORM\JoinColumn(name="etat_id", referencedColumnName="id")
      */
     private $idEtat;
 
@@ -168,15 +167,40 @@ class FicheFrais
     {
         return $this->dateModif;
     }
+    
+
+    /**
+     * Set idVisiteur
+     *
+     * @param \GsbFrais\ConnexionBundle\Entity\Visiteur $idVisiteur
+     *
+     * @return FicheFrais
+     */
+    public function setIdVisiteur(\GsbFrais\ConnexionBundle\Entity\Visiteur $idVisiteur = null)
+    {
+        $this->idVisiteur = $idVisiteur;
+
+        return $this;
+    }
+
+    /**
+     * Get idVisiteur
+     *
+     * @return \GsbFrais\ConnexionBundle\Entity\Visiteur
+     */
+    public function getIdVisiteur()
+    {
+        return $this->idVisiteur;
+    }
 
     /**
      * Set idEtat
      *
-     * @param integer $idEtat
+     * @param \GsbFrais\ProfilBundle\Entity\Etat $idEtat
      *
      * @return FicheFrais
      */
-    public function setIdEtat($idEtat)
+    public function setIdEtat(\GsbFrais\ProfilBundle\Entity\Etat $idEtat = null)
     {
         $this->idEtat = $idEtat;
 
@@ -186,11 +210,10 @@ class FicheFrais
     /**
      * Get idEtat
      *
-     * @return int
+     * @return \GsbFrais\ProfilBundle\Entity\Etat
      */
     public function getIdEtat()
     {
         return $this->idEtat;
     }
 }
-
