@@ -13,8 +13,8 @@
 }
 
 #navLateral a:hover {
-    color: #28a745;
-
+    /*color: #28a745;
+*/
 }
 
 #navLateral a:before {
@@ -30,7 +30,6 @@
     transform: scaleX(0);
     -webkit-transition: all 0.3s ease-in-out 0s;
     transition: all 0.3s ease-in-out 0s;
-
 }
 #navLateral a:hover:before {
     visibility: visible;
