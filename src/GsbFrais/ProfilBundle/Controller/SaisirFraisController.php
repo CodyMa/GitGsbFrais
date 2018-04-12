@@ -17,6 +17,7 @@ class SaisirFraisController extends Controller
         //echo $session->get('id');
         $ficheFrais = new FicheFrais();
 
+        /*
         $form = $this->createFormBuilder($ficheFrais)
             ->add('prdEngag', DateTimeType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
             ->add('repasMidi', TextType::class, array('label'=> 'Mot de passe' ,'attr' => array('class'=> 'form-control')))
@@ -27,20 +28,14 @@ class SaisirFraisController extends Controller
             ->add('libelle', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
             ->add('montant', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
             ->add('nbJustif', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
-            ->add('montantTot', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
-            ->add('', ChoiceType::class, array('label'=> 'Statut' , 'attr' => array('class'=> 'custom-select'),
-                'choices'  => array(
-                    'Statut :' => array('Visiteur' => 'visiteur', 'Comptable' => 'comptable', ),
-                )))
-            ->add('save', SubmitType::class, array('label'=> 'Se connecter' ,'attr' => array('class'=> 'btn btn-primary',  'id' => 'btnSave')))
+            ->add('montantTot', TextType::class, array('label'=> 'Montant' ,'attr' => array('class'=> 'form-control')))
+            ->add('save', SubmitType::class, array('label'=> 'Envoyer' ,'attr' => array('class'=> 'btn btn-primary',  'id' => 'btnSave')))
             ->getForm();
-
+        */
 
         return $this->render(
-            'profil/saisieFrais.html.twig' ,
-            array(
-                'form' => $form->createView()
-            )
+            'profil/saisieFrais.html.twig'
+            /* array('form' => $form->createView()) */
         );
     }
 }

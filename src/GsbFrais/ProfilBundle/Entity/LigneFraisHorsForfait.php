@@ -154,5 +154,4 @@ class LigneFraisHorsForfait
     {
         return $this->idFicheFrais;
     }
-    //
 }
