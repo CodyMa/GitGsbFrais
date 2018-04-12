@@ -2,6 +2,7 @@
 
 namespace GsbFrais\ProfilBundle\Controller;
 
+use Doctrine\DBAL\Types\DateTimeType;
 use Doctrine\DBAL\Types\TextType;
 use GsbFrais\ProfilBundle\Entity\FicheFrais;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,16 +18,16 @@ class SaisirFraisController extends Controller
         $ficheFrais = new FicheFrais();
 
         $form = $this->createFormBuilder($ficheFrais)
-            ->add('PeriodeEngagement', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
-            ->add('RepasMidi', TextType::class, array('label'=> 'Mot de passe' ,'attr' => array('class'=> 'form-control')))
-            ->add('Nuitees', TextType::class, array('label'=> 'Mot de passe' ,'attr' => array('class'=> 'form-control')))
-            ->add('Etape', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
+            ->add('prdEngag', DateTimeType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
+            ->add('repasMidi', TextType::class, array('label'=> 'Mot de passe' ,'attr' => array('class'=> 'form-control')))
+            ->add('nuitees', TextType::class, array('label'=> 'Mot de passe' ,'attr' => array('class'=> 'form-control')))
+            ->add('etape', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
             ->add('km', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
-            ->add('Date', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
-            ->add('Libelle', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
-            ->add('', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
-            ->add('nombreJustificatif', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
-            ->add('MontantTotal', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
+            ->add('dateHf', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
+            ->add('libelle', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
+            ->add('montant', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
+            ->add('nbJustif', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
+            ->add('montantTot', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
             ->add('', ChoiceType::class, array('label'=> 'Statut' , 'attr' => array('class'=> 'custom-select'),
                 'choices'  => array(
                     'Statut :' => array('Visiteur' => 'visiteur', 'Comptable' => 'comptable', ),

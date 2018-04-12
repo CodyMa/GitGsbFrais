@@ -57,21 +57,25 @@
                 {% block contenu %}
                     <div class="jumbotron jumbotron-fluid">
                         <div class="container-fluid">
-                            {#{{ form_start(form) }}
+                            {{ form_start(form) }}
                                 <div class="form-group">
-                                    {{ form_row(form.) }}
+                                    {{ form_row(form.prdEngag) }}
                                 </div>
                                 <div class="form-group">
-                                    {{ form_row(form.) }}
+                                    {{ form_row(form.repasMidi) }}
                                 </div>
                                 <div class="form-group">
-                                    {{ form_row(form.) }}
+                                    {{ form_row(form.nuitees) }}
                                 </div>
-                                <br>
+                                <div class="form-group">
+                                    {{ form_row(form.nuitees) }}
+                                </div>
+
+                            <br>
                                 <div id="divSave">
                                 {{ form_row(form.save) }}
                                 </div>
-                            {{ form_end(form) }}#}
+                            {{ form_end(form) }}
                         </div>
                     </div>
 

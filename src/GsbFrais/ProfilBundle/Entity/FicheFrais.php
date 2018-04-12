@@ -28,11 +28,18 @@ class FicheFrais
     private $idVisiteur;
 
     /**
-     * @var string
+     * @var date
      *
-     * @ORM\Column(name="mois", type="string", length=3)
+     * @ORM\Column(name="date", type="date")
      */
-    private $mois;
+    private $date;
+
+    /**
+     * @var String
+     *
+     * @ORM\Column(name="idVisiteurDate", type="string", length=100, unique=true, nullable=false)
+     */
+    private $idVisiteurDate;
 
     /**
      * @var int
@@ -51,7 +58,7 @@ class FicheFrais
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateModif", type="date")
+     * @ORM\Column(name="dateModif", type="date", nullable=true)
      */
     private $dateModif;
 
@@ -72,29 +79,6 @@ class FicheFrais
         return $this->id;
     }
 
-    /**
-     * Set mois
-     *
-     * @param string $mois
-     *
-     * @return FicheFrais
-     */
-    public function setMois($mois)
-    {
-        $this->mois = $mois;
-
-        return $this;
-    }
-
-    /**
-     * Get mois
-     *
-     * @return string
-     */
-    public function getMois()
-    {
-        return $this->mois;
-    }
 
     /**
      * Set nbJustificatif
@@ -215,5 +199,53 @@ class FicheFrais
     public function getIdEtat()
     {
         return $this->idEtat;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return FicheFrais
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set idVisiteurDate
+     *
+     * @param string $idVisiteurDate
+     *
+     * @return FicheFrais
+     */
+    public function setIdVisiteurDate($idVisiteurDate)
+    {
+        $this->idVisiteurDate = $idVisiteurDate;
+
+        return $this;
+    }
+
+    /**
+     * Get idVisiteurDate
+     *
+     * @return string
+     */
+    public function getIdVisiteurDate()
+    {
+        return $this->idVisiteurDate;
     }
 }
