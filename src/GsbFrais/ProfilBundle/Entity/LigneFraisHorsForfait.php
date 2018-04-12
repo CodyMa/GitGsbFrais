@@ -130,5 +130,28 @@ class LigneFraisHorsForfait
     {
         return $this->libelle;
     }
-}
 
+    /**
+     * Set idFicheFrais
+     *
+     * @param \GsbFrais\ProfilBundle\Entity\FicheFrais $idFicheFrais
+     *
+     * @return LigneFraisHorsForfait
+     */
+    public function setIdFicheFrais(\GsbFrais\ProfilBundle\Entity\FicheFrais $idFicheFrais = null)
+    {
+        $this->idFicheFrais = $idFicheFrais;
+
+        return $this;
+    }
+
+    /**
+     * Get idFicheFrais
+     *
+     * @return \GsbFrais\ProfilBundle\Entity\FicheFrais
+     */
+    public function getIdFicheFrais()
+    {
+        return $this->idFicheFrais;
+    }
+}
