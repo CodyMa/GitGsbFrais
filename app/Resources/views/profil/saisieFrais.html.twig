@@ -57,7 +57,7 @@
                 {% block contenu %}
                     <div class="jumbotron jumbotron-fluid">
                         <div class="container-fluid">
-                            {{ form_start(form) }}
+                            {#{{ form_start(form) }}
                                 <div class="form-group">
                                     {{ form_row(form.prdEngag) }}
                                 </div>
@@ -77,6 +77,7 @@
                                 </div>
                             {{ form_end(form) }}
                         </div>
+                        #}
                     </div>
 
                 {% endblock contenu %}
