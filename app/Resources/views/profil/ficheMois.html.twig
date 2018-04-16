@@ -2,7 +2,7 @@
 {% block body %}
     {% block stylsheet %}
         {{ parent() }}
-        <link rel="stylesheet" href="{{ asset('assets/css/styleProfil.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/styleFicheMois.css') }}">
     {% endblock %}
 
     {% block header %}
@@ -19,23 +19,21 @@
 
 
 
-                <div class="col-sm">
+                <div class="col-sm-9">
                     {% block contenu %}
 
                         <div class="jumbotron jumbotron-fluid">
                             <div class="container">
-                                <h1> Fiche du mois </h1>
+                                <h1> Fiche des frais </h1>
+                                <h3> DU  AU </h3>
                                 <!--ee-->
                             </div>
                         </div>
 
                     {% endblock contenu %}
                 </div>
-                <div class="col-sm-4 col-md-3">
-                    {% block affichage %}
-                        {{ parent() }}
-                    {% endblock affichage %}
-                </div>
+
+
             </div>
         </div>
     {% endblock %}

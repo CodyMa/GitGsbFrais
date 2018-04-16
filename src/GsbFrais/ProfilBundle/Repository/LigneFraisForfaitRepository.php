@@ -10,4 +10,10 @@ namespace GsbFrais\ProfilBundle\Repository;
  */
 class LigneFraisForfaitRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getFraisForfaitsMois($idFicheFrais){
+        $queryBuilder = $this->_em->createQueryBuilder()
+            ->select();
+    }
+
 }
