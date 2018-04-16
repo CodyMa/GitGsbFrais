@@ -5,3 +5,7 @@ gsb_profil_homepage:
 gsb_profil_saisie_frais:
     path:     /saisieFrais
     defaults: { _controller: GsbFraisProfilBundle:SaisirFrais:saisir}
+
+gsb_profil_afficher_mois:
+    path:     /fraisDuMois
+    defaults: { _controller: GsbFraisProfilBundle:FraisDuMois:afficher}
