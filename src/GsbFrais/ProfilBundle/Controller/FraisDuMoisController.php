@@ -3,6 +3,7 @@
 namespace GsbFrais\ProfilBundle\Controller;
 
 use GsbFrais\ProfilBundle\Entity\FicheFrais;
+use GsbFrais\ProfilBundle\Repository\FicheFraisRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -31,7 +32,7 @@ class FraisDuMoisController extends Controller
 
         //Récupération de la fiche de frais
         //$fraisMois = new FicheFrais();
-        $fraisMois = $em->getRepository('FicheFrais')->getFicheFrais($id, $month, $year);
+        $fraisMois = $em->getRepository('GsbFraisProfilBundle:FicheFrais')->getFicheFrais($id, $month, $year);
         dump($fraisMois);
 
         //Si la fiche de frais n'estpas vide
@@ -40,8 +41,9 @@ class FraisDuMoisController extends Controller
             foreach ($fraisMois as $unFrais){
                 $idFiche = $unFrais->getId();
 
-                $fraisForfaitMois = $em->getRepository('LigneFraisForfait');
-                $fraisHorsForfaitMois = $em->getRepository('LigneFraisHorsForfait');
+                //$typeFraisForfait
+                $fraisForfaitMois = $em->getRepository('GsbFraisProfilBundle:LigneFraisForfait');
+                $fraisHorsForfaitMois = $em->getRepository('GsbFraisProfilBundle:LigneFraisHorsForfait');
 
             }
 

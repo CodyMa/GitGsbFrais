@@ -2,6 +2,7 @@
 
 namespace GsbFrais\ProfilBundle\Repository;
 
+
 /**
  * FicheFraisRepository
  *
@@ -12,6 +13,8 @@ class FicheFraisRepository extends \Doctrine\ORM\EntityRepository
 {
 
     public function getFicheFrais ($idVisiteur, $mois, $annee){
+
+
         $queryBuilder = $this->_em->createQueryBuilder()
             ->select('ff') //ff = alias de fiche frais => selectionner tous les champs
             ->from( $this->_entityName, 'ff') //FROM FicheFrais
@@ -27,4 +30,6 @@ class FicheFraisRepository extends \Doctrine\ORM\EntityRepository
 
         return $queryBuilder;
     }
+
+
 }
