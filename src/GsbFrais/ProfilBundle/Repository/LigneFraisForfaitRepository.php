@@ -11,9 +11,22 @@ namespace GsbFrais\ProfilBundle\Repository;
 class LigneFraisForfaitRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function getFraisForfaitsMois($idFicheFrais){
-        $queryBuilder = $this->_em->createQueryBuilder()
-            ->select();
+    public function getFraisForfaitMois($idFicheFrais){
+        $queryBuilder = $this->createQueryBuilder('lff')
+            //->select()
+                //from LigneFraisForfait lff inner join FicheFrais ff ON lff.idFicheFrais = ff.id
+                //WHERE ff.id = $idFicheFrais
+            ->join('lff.idFicheFrais', 'ff', 'WITH', 'ff.id = :idFiche')
+                //from LigneFraisForfait lff inner join FraisForfait ffo ON lff.idFraisForfait = ffo.id
+            ->join('lff.idFraisForfait', 'ffo')
+            ->addSelect('ff')
+            ->addSelect('ffo')
+            //->where('lff.idFicheFrais = :idFiche')
+            ->setParameter('idFiche', $idFicheFrais)
+            ->getQuery()
+            ->getResult();
+
+        return $queryBuilder;
     }
 
 }

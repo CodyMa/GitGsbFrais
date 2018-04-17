@@ -10,4 +10,25 @@ namespace GsbFrais\ProfilBundle\Repository;
  */
 class LigneFraisHorsForfaitRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getFraisHorsForfaitMois($idFicheFrais){
+        //création de ma requête en indiquant l'alias utilisé l'entité "LigneFraisHorsForfait"
+        $maRequete = $this->createQueryBuilder('lfhf')
+            //from LigneFraisHorsForfait lfhf inner join FraisForfait ff ON lfhf.idFicheFrais = ff.id
+            //(Grace au manyToOne)
+            //WHERE ff.id = $idFicheFrais
+            ->join('lfhf.idFicheFrais', 'ff', 'WITH', 'ff.id = :idFiche')
+            //On veut aussi récupérer tous les éléments de fiche frais en plus des attributs de la ligne frais hors forfait
+            ->addSelect('ff')
+            //:idFiche = $idFicheFrais
+            ->setParameter('idFiche', $idFicheFrais)
+            //Envoie requete
+            ->getQuery()
+            //Recup resultat sous forme d'objet
+            ->getResult();
+
+        //Retour de la réponse
+        return $maRequete;
+    }
+
 }
