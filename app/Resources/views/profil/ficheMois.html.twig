@@ -75,7 +75,7 @@
                         {# SI FICHE FRAIS N'EST PAS VIDE#}
                         {% if ficheFrais %}
                         <div class="container">
-                            {{ dump(ficheFrais[0]["id"]) }}
+                            {{ dump(ficheFrais[0]) }}
                             {#<h5>Dernière modification le : {{ ficheFrais[0]['dateModif'] | date('d/m/Y') }}</h5>#}
                         </div>
                         {% endif %}
