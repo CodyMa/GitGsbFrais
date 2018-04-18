@@ -1,0 +1,112 @@
+{% extends 'profil/profil.html.twig' %}
+{% block stylesheet %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/styleHistorique.css') }}">
+{% endblock stylesheet %}
+{% block main %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4 col-md-3">
+                {% block menu %}
+                    <div class="container-fluid">
+                        <div class ='row'>
+                            <nav class="col-sm hidden-xs-down bg-faded sidebar">
+                                <div id="navLateral">
+                                    <ul class="nav nav-pills flex-column">
+                                        <li class="nav-item" >
+                                            <a class="nav-link" href="{{ path('gsb_profil_homepage') }}">Menu<i class="fab fa-elementor"></i></a>
+                                        </li>
+                                    </ul>
+                                    <hr>
+
+                                    <ul class="nav nav-pills flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ path('gsb_profil_saisie_frais') }}">Saisie des frais<i class="far fa-edit"></i></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ path('gsb_profil_afficher_mois') }}">Fiche du mois <i class="fas fa-book"></i></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="href="{{ path('gsb_profil_historique') }}"">Historique<i class="fas fa-angle-left"></i><span class="sr-only">(current)</span></a>
+                                        </li>
+                                    </ul>
+
+                                    <hr>
+
+                                    <ul class="nav nav-pills flex-column">
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Changer de mot de passe <i class="fas fa-key"></i></a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Se déconnecter <i class="fas fa-power-off"></i></a>
+
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                {% endblock menu %}
+            </div>
+
+
+            {# formulaire au millieur de la page #}
+            <div class="col-sm-5 col-md-5">
+                {% block contenu %}
+                    <div style="padding: 1rem 1rem;" class="jumbotron jumbotron-fluid">
+                        <div class="container-fluid">
+                            Sélection d'une fiche
+                        </div>
+                    </div>
+
+
+                    {#SI PAS DE FICHES POUR L'UTILISATEUR #}
+                    {% if fiches == null %}
+                        <div style="padding: 10rem 1rem;" class="jumbotron jumbotron-fluid">
+                            <div class="container-fluid">
+                                Votre historique est vide
+                            </div>
+                        </div>
+                        {#SINON AFFICHER LA LISTE DES FICHES #}
+                    {% else %}
+                    {% endif %}
+
+                {% endblock contenu %}
+            </div>
+            {# affichage sur le côté droit de la page#}
+            <div class="col-sm-5 col-md-4">
+
+                {% block affichage %}
+                    <div style="padding: 1rem 1rem;" class="jumbotron jumbotron-fluid">
+                        <div class="container-fluid">
+                            Fiche sélectionnée
+                        </div>
+                    </div>
+
+                    {#SI AUCUNE FICHE SELECTIONNEE #}
+                    {% if selection == false %}
+                        <div style="padding: 10rem 1rem;" class="jumbotron jumbotron-fluid">
+                            <div class="container-fluid">
+                                Aucune fiche n'a été sélectionnée pour le moment
+                            </div>
+                        </div>
+                    {#SINON AFFICHER LA FICHE SELECTIONNEE #}
+                    {% else %}
+                    {% endif %}
+
+                {% endblock affichage %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+{% endblock footer %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock javascripts %}

@@ -32,7 +32,7 @@
                                                 <a class="nav-link active" href="{{ path('gsb_profil_afficher_mois') }}">Fiche du mois <i class="fas fa-angle-left"></i><span class="sr-only">(current)</span></a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">Historique</a>
+                                                <a class="nav-link" href="{{ path('gsb_profil_historique') }}">Historique<i class="fas fa-history"></i></a>
                                             </li>
                                         </ul>
 
@@ -80,6 +80,10 @@
 
                         {#TOTAUX DE LA FICHE#}
                         <table class="table">
+                            <tr>
+                                <th class="table-info" id="bordureLeft" scope="row">{{ "état " | title }}de la fiche : </th>
+                                <td colspan="3" class="table-info" id="bordureRight" >{{ etat }}</td>
+                            </tr>
                             <tr>
                                 <th class="table-info" id="bordureLeft" scope="row">Total des frais : </th>
                                 <td class="table-info" id="bordureRight" >{{ totalFiche }}€</td>
@@ -191,11 +195,16 @@
                                         La liste est Vide
                                     {% endfor %}
 
-                                <tr class="bg-success" id="bordure">
-                                    {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LE TOTAL DES FRAIS FORFAIT#}
-                                    <th scope="row" >{{ "total" | upper }}</th>
-                                    <td id="placeTotal" colspan="3">{{ totalFraisNonForfait }}€ </td>
-                                </tr>
+                                    <tr class="bg-success" id="bordure">
+                                        {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LE TOTAL DES FRAIS FORFAIT#}
+                                        <th scope="row" >{{ "total" | upper }}</th>
+                                        <td id="placeTotal" colspan="3">{{ totalFraisNonForfait }}€ </td>
+                                    </tr>
+                                    <tr class="bg-info" id="bordure">
+                                        {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LE TOTAL DES FRAIS FORFAIT#}
+                                        <th scope="row" colspan="2">{{ "Nombre de justificatifs fournis" | upper }}</th>
+                                        <td colspan="2">{{ nbJustificatif }} </td>
+                                    </tr>
                                 </tbody>
                             </table>
                             {# S'IL N'Y A PAS DE FRAIS HORS FORFAIT A AFFICHER -> proposer renvoie page de saisie #}

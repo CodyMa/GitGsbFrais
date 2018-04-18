@@ -55,8 +55,7 @@ class FraisDuMoisController extends Controller
 
         //MONTANT TOTAL DE LA FICHE
         $totalFiche = 0;
-        //MONTANT TOTAL DES FRAIS VALIDES
-        $totalValide = 0;
+
 
         //Si la fiche de frais n'estpas vide
         if(!empty($fraisMois)){
@@ -111,18 +110,38 @@ class FraisDuMoisController extends Controller
 
         }
 
-
-        return $this->render('profil/ficheMois.html.twig',
-            array(
-                'dateDebut' => $dateDebut,
-                'dateFin' => $dateFin,
-                'dateModif' => $fraisMois[0]->getDateModif(),
-                'lesFraisForfaits' => $fraisForfaitMoisArray,
-                'lesFraisHorsForfaits' => $fraisHorsForfaitMoisArray,
-                'totalFraisForfait' => $totalDesFrais,
-                'totalFraisNonForfait' => $totalDesFraisNonForfait,
-                'totalFiche' => $totalFiche,
-                'totalValide' => $totalValide,
-            ));
+        if (!empty($fraisMois)){
+            $return = $this->render('profil/ficheMois.html.twig',
+                array(
+                    'dateDebut' => $dateDebut,
+                    'dateFin' => $dateFin,
+                    'dateModif' => $fraisMois[0]->getDateModif(),
+                    'nbJustificatif' => $fraisMois[0]->getNbJustificatif(),
+                    'etat' => $fraisMois[0]->getIdEtat()->getLibelleEtat(),
+                    'lesFraisForfaits' => $fraisForfaitMoisArray,
+                    'lesFraisHorsForfaits' => $fraisHorsForfaitMoisArray,
+                    'totalFraisForfait' => $totalDesFrais,
+                    'totalFraisNonForfait' => $totalDesFraisNonForfait,
+                    'totalFiche' => $totalFiche,
+                    'totalValide' => $fraisMois[0]->getMontantValide(),
+                ));
+        }
+        else{
+            $return = $this->render('profil/ficheMois.html.twig',
+                array(
+                    'dateDebut' => $dateDebut,
+                    'dateFin' => $dateFin,
+                    'dateModif' => null,
+                    'nbJustificatif' => null,
+                    'etat' => "non créée",
+                    'lesFraisForfaits' => null,
+                    'lesFraisHorsForfaits' => null,
+                    'totalFraisForfait' => null,
+                    'totalFraisNonForfait' => null,
+                    'totalFiche' => 0,
+                    'totalValide' => 0,
+                ));
+        }
+        return $return;
     }
 }

@@ -9,3 +9,11 @@ gsb_profil_saisie_frais:
 gsb_profil_afficher_mois:
     path:     /fraisDuMois
     defaults: { _controller: GsbFraisProfilBundle:FraisDuMois:afficher}
+
+gsb_profil_historique:
+    path:     /historique
+    defaults: { _controller: GsbFraisProfilBundle:Historique:selectionner}
+
+gsb_profil_historique_selection:
+    path:     /historiqueSelection
+    defaults: { _controller: GsbFraisProfilBundle:Historique:visu}
