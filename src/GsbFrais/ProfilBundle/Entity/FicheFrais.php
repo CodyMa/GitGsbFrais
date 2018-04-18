@@ -359,11 +359,11 @@ class FicheFrais implements ArrayAccess
     public function offsetSet($offset, $value)
     {
         // TODO: Implement offsetSet() method.
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
+            if (is_null($offset)) {
+                $this->container[] = $value;
+            } else {
+                $this->container[$offset] = $value;
+            }
     }
 
     /**

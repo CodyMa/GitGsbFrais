@@ -53,6 +53,11 @@ class FraisDuMoisController extends Controller
         $fraisForfait = $em->getRepository('GsbFraisProfilBundle:FraisForfait')->getLesFraisForfait();
         dump($fraisForfait);
 
+        //MONTANT TOTAL DE LA FICHE
+        $totalFiche = 0;
+        //MONTANT TOTAL DES FRAIS VALIDES
+        $totalValide = 0;
+
         //Si la fiche de frais n'estpas vide
         if(!empty($fraisMois)){
 
@@ -64,69 +69,60 @@ class FraisDuMoisController extends Controller
                 $fraisForfaitMois = $em->getRepository('GsbFraisProfilBundle:LigneFraisForfait')->getFraisForfaitMois( $idFiche );
                 dump($fraisForfaitMois);
 
+                $fraisForfaitMoisArray = array();
+                $totalDesFrais = 0;
+
+                foreach ($fraisForfaitMois as $unFraisMois){
+                    array_push($fraisForfaitMoisArray,
+                        array(
+                            "id" => $unFraisMois->getId(),
+                            "idFraisForfait" => $unFraisMois->getIdFraisForfait()->getId(),
+                            "libelleFraisForfait" => $unFraisMois->getIdFraisForfait()->getLibelle(),
+                            "montantFraisForfait" => $unFraisMois->getIdFraisForfait()->getMontant(),
+                            "quantite" => $unFraisMois->getQuantite(),
+                        ));
+                    $totalDesFrais = $totalDesFrais + ( $unFraisMois->getIdFraisForfait()->getMontant() * $unFraisMois->getQuantite() );
+
+                }
+                dump($fraisForfaitMoisArray);
+
                 //Les frais non forfaitisés du mois ajouté par le visiteur pour remplir le tableau
                 $fraisHorsForfaitMois = $em->getRepository('GsbFraisProfilBundle:LigneFraisHorsForfait')->getFraisHorsForfaitMois( $idFiche );
                 dump($fraisHorsForfaitMois);
 
-                if (!empty($fraisForfaitMois) && !empty($fraisHorsForfaitMois)){
-                    $return = $this->render('profil/ficheMois.html.twig',
+                $fraisHorsForfaitMoisArray = array();
+                $totalDesFraisNonForfait = 0;
+
+                foreach ($fraisHorsForfaitMois as $unFraisHorsForfait){
+                    array_push($fraisHorsForfaitMoisArray,
                         array(
-                            'dateDebut' => $dateDebut,
-                            'dateFin' => $dateFin,
-                            'ficheFrais' => $fraisMois,
-                            'lesTitresFraisForfait' => $fraisForfait,
-                            'lesFraisForfaits' => $fraisForfaitMois,
-                            'lesFraisHorsForfaits' => $fraisHorsForfaitMois,
+                           "id" => $unFraisHorsForfait->getId(),
+                           "montant" => $unFraisHorsForfait->getMontant(),
+                           "date" => $unFraisHorsForfait->getDate(),
+                           "libelle" => $unFraisHorsForfait->getLibelle(),
                         ));
+
+                    $totalDesFraisNonForfait = $totalDesFraisNonForfait + $unFraisHorsForfait->getMontant();
                 }
-                elseif (empty($fraisForfaitMois)){
-                    $return = $this->render('profil/ficheMois.html.twig',
-                        array(
-                            'dateDebut' => $dateDebut,
-                            'dateFin' => $dateFin,
-                            'ficheFrais' => $fraisMois,
-                            'lesTitresFraisForfait' => $fraisForfait,
-                            'lesFraisForfaits' => null,
-                            'lesFraisHorsForfaits' => $fraisHorsForfaitMois,
-                        ));
-                }
-                elseif (empty($fraisHorsForfaitMois)){
-                    $return = $this->render('profil/ficheMois.html.twig',
-                        array(
-                            'dateDebut' => $dateDebut,
-                            'dateFin' => $dateFin,
-                            'ficheFrais' => $fraisMois,
-                            'lesTitresFraisForfait' => $fraisForfait,
-                            'lesFraisForfaits' => $fraisForfaitMois,
-                            'lesFraisHorsForfaits' => null,
-                        ));
-                }
-                else{
-                    $return = $this->render('profil/ficheMois.html.twig',
-                        array(
-                            'dateDebut' => $dateDebut,
-                            'dateFin' => $dateFin,
-                            'ficheFrais' => $fraisMois,
-                            'lesTitresFraisForfait' => $fraisForfait,
-                            'lesFraisForfaits' => null,
-                            'lesFraisHorsForfaits' => null,
-                        ));
-                }
+
             }
 
-        }
-        else{
-            $return = $this->render('profil/ficheMois.html.twig',
-                array(
-                    'dateDebut' => $dateDebut,
-                    'dateFin' => $dateFin,
-                    'ficheFrais' => $fraisMois,
-                    'lesTitresFraisForfait' => $fraisForfait,
-                    'lesFraisForfaits' => null,
-                    'lesFraisHorsForfaits' => null,
-                ));
+            $totalFiche = $totalDesFraisNonForfait + $totalDesFrais;
+
         }
 
-        return $return;
+
+        return $this->render('profil/ficheMois.html.twig',
+            array(
+                'dateDebut' => $dateDebut,
+                'dateFin' => $dateFin,
+                'dateModif' => $fraisMois[0]->getDateModif(),
+                'lesFraisForfaits' => $fraisForfaitMoisArray,
+                'lesFraisHorsForfaits' => $fraisHorsForfaitMoisArray,
+                'totalFraisForfait' => $totalDesFrais,
+                'totalFraisNonForfait' => $totalDesFraisNonForfait,
+                'totalFiche' => $totalFiche,
+                'totalValide' => $totalValide,
+            ));
     }
 }
