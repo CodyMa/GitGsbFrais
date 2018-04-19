@@ -1,7 +1,28 @@
-.container-fluid{
+.contAlign{
     padding-top: 2%;
     text-align: center;
 }
+
+.container{
+    padding-top: 2%;
+    text-align: center;
+}
+
+.container-fluid {
+    padding-top: 2%;
+}
+
+#selection:hover{
+    /*background-color: lightgray;*/
+    background-image: url("../img/afficherImg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    color: black;
+}
+
+
 #navLateral a {
     position: relative;
     color: black;

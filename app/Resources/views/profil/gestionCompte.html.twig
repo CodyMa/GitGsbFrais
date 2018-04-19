@@ -19,7 +19,7 @@
                                     <div id="navLateral">
                                         <ul class="nav nav-pills flex-column">
                                             <li class="nav-item" >
-                                                <a class="nav-link" href="{{ path('gsb_profil_homepage') }}">Menu<i class="fas fa-book"></i></a>
+                                                <a class="nav-link" href="{{ path('gsb_profil_homepage') }}">Menu<i class="fab fa-elementor"></i></a>
                                             </li>
                                         </ul>
                                         <hr>
@@ -32,7 +32,7 @@
                                                 <a class="nav-link active" href="{{ path('gsb_profil_afficher_mois') }}">Fiche du mois <i class="fas fa-angle-left"></i><span class="sr-only">(current)</span></a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">Historique</a>
+                                                <a class="nav-link" href="{{ path('gsb_profil_historique') }}">Historique<i class="fas fa-history"></i></a>
                                             </li>
                                         </ul>
 
@@ -61,25 +61,12 @@
 
                 <div class="col-sm-9">
                     {% block contenu %}
-
                         <div class="jumbotron jumbotron-fluid">
+
                             <div class="container">
-                                <h1> Fiche des frais </h1>
-                                <h3>{{ dateDebut }} - {{ dateFin }}</h3>
-                                <!--ee-->
+                                <h1> Gestionnaire de compte </h1>
                             </div>
                         </div>
-
-                        <br>
-
-                        {# SI FICHE FRAIS N'EST PAS VIDE#}
-                        {% if ficheFrais %}
-                        <div class="container">
-                            {{ dump(ficheFrais[0]) }}
-                            {#<h5>Dernière modification le : {{ ficheFrais[0]['dateModif'] | date('d/m/Y') }}</h5>#}
-                        </div>
-                        {% endif %}
-
                     {% endblock contenu %}
                 </div>
 
