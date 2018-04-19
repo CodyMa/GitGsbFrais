@@ -41,7 +41,7 @@
                                         <ul class="nav nav-pills flex-column">
 
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">Changer de mot de passe <i class="fas fa-key"></i></a>
+                                                <a class="nav-link" href="{{ path('gsb_frais_edit_mdp') }}">Changer de mot de passe <i class="fas fa-key"></i></a>
                                             </li>
 
                                             <li class="nav-item">
@@ -87,8 +87,8 @@
                             <tr>
                                 <th class="table-info" id="bordureLeft" scope="row">Total des frais : </th>
                                 <td class="table-info" id="bordureRight" >{{ totalFiche }}€</td>
-                                <th class="table-success" id="bordureLeft" scope="row">Frais validés : </th>
-                                <td class="table-success" id="bordureRight" >{{ totalValide }}€</td>
+                                <th class="table-warning" id="bordureLeft" scope="row">Frais validés : </th>
+                                <td class="table-warning" id="bordureRight" >{{ totalValide }}€</td>
                             </tr>
                         </table>
 
@@ -144,7 +144,7 @@
                                             La liste est Vide
                                         {% endfor %}
                                     </tr>
-                                    <tr class="bg-success" id="bordure">
+                                    <tr id="bordure" style="background-color: #28a74599">
                                         {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LE TOTAL DES FRAIS FORFAIT#}
                                         <th scope="row" >{{ "total" | upper }}</th>
                                         <td id="placeTotal" colspan="{{ lesFraisForfaits | length }}">{{ totalFraisForfait }}€ </td>
@@ -195,12 +195,12 @@
                                         La liste est Vide
                                     {% endfor %}
 
-                                    <tr class="bg-success" id="bordure">
+                                    <tr style="background-color: #28a74599" id="bordure">
                                         {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LE TOTAL DES FRAIS FORFAIT#}
                                         <th scope="row" >{{ "total" | upper }}</th>
                                         <td id="placeTotal" colspan="3">{{ totalFraisNonForfait }}€ </td>
                                     </tr>
-                                    <tr class="bg-info" id="bordure">
+                                    <tr style="background-color: #b1575099" id="bordure">
                                         {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LE TOTAL DES FRAIS FORFAIT#}
                                         <th scope="row" colspan="2">{{ "Nombre de justificatifs fournis" | upper }}</th>
                                         <td colspan="2">{{ nbJustificatif }} </td>

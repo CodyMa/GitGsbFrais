@@ -36,7 +36,7 @@
                                     <ul class="nav nav-pills flex-column">
 
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Changer de mot de passe <i class="fas fa-key"></i></a>
+                                            <a class="nav-link" href="{{ path('gsb_frais_edit_mdp') }}">Changer de mot de passe <i class="fas fa-key"></i></a>
                                         </li>
 
                                         <li class="nav-item">
@@ -56,22 +56,67 @@
             {# formulaire au millieur de la page #}
             <div class="col-sm-5 col-md-5">
                 {% block contenu %}
-                    <div style="padding: 1rem 1rem;" class="jumbotron jumbotron-fluid">
+                    <div style="padding: 0.5rem 1rem;" class="jumbotron jumbotron-fluid">
                         <div class="container-fluid contAlign">
-                            Sélection d'une fiche
+                            <a class="btn btn-outline-success" href="{{ path('gsb_profil_historique') }}"> Liste des fiches archivées </a>
                         </div>
                     </div>
 
 
                     {#SI PAS DE FICHES POUR L'UTILISATEUR #}
                     {% if fiches == null %}
-                        <div style="padding: 10rem 1rem;" class="jumbotron jumbotron-fluid">
+                        {% if form %}
+                            <div class="container">
+                                <h1>Recherchez une fiche</h1><br>
+                                <div class="container-fluid">
+                                    {{ form_start(form) }}
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                                {{ form_row(form.month) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.year) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ form_row(form.search) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <div style="padding: 5rem 1rem;" class="jumbotron jumbotron-fluid">
                             <div class="container-fluid contAlign">
-                                Votre historique est vide
+                                Aucune fiche
                             </div>
                         </div>
                         {#SINON AFFICHER LA LISTE DES FICHES #}
                     {% else %}
+                        {% if form %}
+                        <div class="container">
+                            <h1>Recherchez une fiche</h1><br>
+                            <div class="container-fluid">
+                                {{ form_start(form) }}
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            {{ form_row(form.month) }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form_row(form.year) }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form_row(form.search) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                        {% endif %}
 
                         <table class="table">
                             <thead class="thead-dark">
@@ -150,8 +195,8 @@
                             <tr>
                                 <th class="table-info" id="bordureLeft" scope="row">Total des frais : </th>
                                 <td class="table-info" id="bordureRight" >{{ totalFiche }}€</td>
-                                <th class="table-success" id="bordureLeft" scope="row">Frais validés : </th>
-                                <td class="table-success" id="bordureRight" >{{ totalValide }}€</td>
+                                <th class="table-warning" id="bordureLeft" scope="row">Frais validés : </th>
+                                <td class="table-warning" id="bordureRight" >{{ totalValide }}€</td>
                             </tr>
                         </table>
 
@@ -207,7 +252,7 @@
                                         La liste est Vide
                                     {% endfor %}
                                 </tr>
-                                <tr class="bg-success" id="bordure">
+                                <tr style="background-color: #28a74599" id="bordure">
                                     {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LE TOTAL DES FRAIS FORFAIT#}
                                     <th scope="row" >{{ "total" | upper }}</th>
                                     <td id="placeTotal" colspan="{{ lesFraisForfaits | length }}">{{ totalFraisForfait }}€ </td>
@@ -257,12 +302,12 @@
                                     La liste est Vide
                                 {% endfor %}
 
-                                <tr class="bg-success" id="bordure">
+                                <tr style="background-color: #28a74599" id="bordure">
                                     {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LE TOTAL DES FRAIS FORFAIT#}
                                     <th scope="row" >{{ "total" | upper }}</th>
                                     <td id="placeTotal" colspan="3">{{ totalFraisNonForfait }}€ </td>
                                 </tr>
-                                <tr class="bg-info" id="bordure">
+                                <tr style="background-color: #b1575099" id="bordure">
                                     {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LE TOTAL DES FRAIS FORFAIT#}
                                     <th scope="row" colspan="2">{{ "Nombre de justificatifs fournis" | upper }}</th>
                                     <td colspan="2">{{ nbJustificatif }} </td>
