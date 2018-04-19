@@ -4,6 +4,8 @@ namespace GsbFrais\ProfilBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -15,48 +17,130 @@ class HistoriqueController extends Controller
 
         $session = $request->getSession();
 
-        //id du visiteur
-        $idVis = $session->get('id');
+        $lesMois = array();
+        for ($i = 1 ; $i <= 12 ; $i++){
+            $lesMois[$i] = $i;
+        }
 
-        //Récupération doctrine
-        $em = $this->getDoctrine()->getManager();
+        $lesAnnee = array();
+        for ($i = date('Y') ; $i >= date('Y') - 3 ; $i--){
+            $lesAnnee[$i] = $i;
+        }
 
-        //Récupération de TOUTES les fiches
-        $fraisMois = $em->getRepository('GsbFraisProfilBundle:FicheFrais')->getFichesFrais($idVis);
-        dump($fraisMois);
+        $form = $this->createFormBuilder(array('allow_extra_field' => true))
+            ->add('month', ChoiceType::class, array('label'=> false , 'attr' => array('class'=> 'custom-select'),
+                'choices'  => array(
+                    'Mois :' => array($lesMois),
+                )))
+            ->add('year', ChoiceType::class, array('label'=> false , 'attr' => array('class'=> 'custom-select'),
+                'choices'  => array(
+                    'Années :' => array($lesAnnee),
+                )))
+            ->add('search', SubmitType::class, array('label'=> 'Rechercher' ,'attr' => array('class'=> 'btn btn-outline-success',  'id' => 'btnSave')))
+            ->getForm();
 
-        if(!empty($fraisMois)){
 
-            //Récupération des valeurs dans un tableau
-            //Chaque tableau contenue eux meme dans le tableau avec toutes les fiches frais
-            $ficheFraisArray = array();
-            foreach ($fraisMois as $unFrais){
-                array_push($ficheFraisArray,
+        $request = Request::createFromGlobals();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            //Recupération données du form
+            $data = $form->getData();
+
+            //id du visiteur
+            $idVis = $session->get('id');
+
+            //Récupération doctrine
+            $em = $this->getDoctrine()->getManager();
+
+            //Récupération de TOUTES les fiches
+            $fraisMois = $em->getRepository('GsbFraisProfilBundle:FicheFrais')->getFicheFrais($idVis, $data['month'], $data['year']);
+            dump($fraisMois);
+
+            if (!empty($fraisMois)) {
+
+                //Récupération des valeurs dans un tableau
+                //Chaque tableau contenue eux meme dans le tableau avec toutes les fiches frais
+                $ficheFraisArray = array();
+                foreach ($fraisMois as $unFrais) {
+                    array_push($ficheFraisArray,
+                        array(
+                            "id" => $unFrais->getId(),
+                            "idVisiteur" => $unFrais->getIdVisiteur(),
+                            "date" => $unFrais->getDate(),
+                            "idVisiteurDate" => $unFrais->getIdVisiteurDate(),
+                            "nbJustificatif" => $unFrais->getNbJustificatif(),
+                            "montantValide" => $unFrais->getMontantValide(),
+                            "dateModif" => $unFrais->getDateModif(),
+                            "libelleEtat" => $unFrais->getIdEtat()->getLibelleEtat(),
+                        ));
+                }
+
+                $return = $this->render('profil/historiqueFrais.html.twig',
                     array(
-                        "id" => $unFrais->getId(),
-                        "idVisiteur" => $unFrais->getIdVisiteur(),
-                        "date" => $unFrais->getDate(),
-                        "idVisiteurDate" => $unFrais->getIdVisiteurDate(),
-                        "nbJustificatif" => $unFrais->getNbJustificatif(),
-                        "montantValide" => $unFrais->getMontantValide(),
-                        "dateModif" => $unFrais->getDateModif(),
-                        "libelleEtat" => $unFrais->getIdEtat()->getLibelleEtat(),
+                        'selection' => false,
+                        'fiches' => $ficheFraisArray,
+                        'form' => $form->createView(),
+                    ));
+
+            } else {
+                $return = $this->render('profil/historiqueFrais.html.twig',
+                    array(
+                        'selection' => false,
+                        'fiches' => null,
+                        'form' => $form->createView(),
                     ));
             }
 
-            $return = $this->render('profil/historiqueFrais.html.twig',
-                array(
-                    'selection' => false,
-                    'fiches' => $ficheFraisArray,
-                ));
-
         }
         else{
-            $return = $this->render('profil/historiqueFrais.html.twig',
-                array(
-                    'selection' => false,
-                    'fiches' => null,
-                ));
+
+            //id du visiteur
+            $idVis = $session->get('id');
+
+            //Récupération doctrine
+            $em = $this->getDoctrine()->getManager();
+
+            //Récupération de TOUTES les fiches
+            $fraisMois = $em->getRepository('GsbFraisProfilBundle:FicheFrais')->getFichesFrais($idVis);
+            dump($fraisMois);
+
+            if(!empty($fraisMois)){
+
+                //Récupération des valeurs dans un tableau
+                //Chaque tableau contenue eux meme dans le tableau avec toutes les fiches frais
+                $ficheFraisArray = array();
+                foreach ($fraisMois as $unFrais){
+                    array_push($ficheFraisArray,
+                        array(
+                            "id" => $unFrais->getId(),
+                            "idVisiteur" => $unFrais->getIdVisiteur(),
+                            "date" => $unFrais->getDate(),
+                            "idVisiteurDate" => $unFrais->getIdVisiteurDate(),
+                            "nbJustificatif" => $unFrais->getNbJustificatif(),
+                            "montantValide" => $unFrais->getMontantValide(),
+                            "dateModif" => $unFrais->getDateModif(),
+                            "libelleEtat" => $unFrais->getIdEtat()->getLibelleEtat(),
+                        ));
+                }
+
+                $return = $this->render('profil/historiqueFrais.html.twig',
+                    array(
+                        'selection' => false,
+                        'fiches' => $ficheFraisArray,
+                        'form' => $form->createView(),
+                    ));
+
+            }
+            else{
+                $return = $this->render('profil/historiqueFrais.html.twig',
+                    array(
+                        'selection' => false,
+                        'fiches' => null,
+                        'form' => $form->createView(),
+                    ));
+            }
         }
 
         return $return;
@@ -201,6 +285,7 @@ class HistoriqueController extends Controller
                         'totalValide' => $fraisMois[0]->getMontantValide(),
                         'selection' => true,
                         'fiches' => $ficheFraisArray,
+                        'form' => null,
                     ));
             }
             else{
@@ -219,6 +304,7 @@ class HistoriqueController extends Controller
                         'totalValide' => 0,
                         'selection' => true,
                         'fiches' => $ficheFraisArray,
+                        'form' => null,
                     ));
             }
 
@@ -228,6 +314,7 @@ class HistoriqueController extends Controller
                 array(
                     'selection' => true,
                     'fiches' => null,
+                    'form' => null,
                 ));
         }
 

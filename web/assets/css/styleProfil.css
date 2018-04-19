@@ -69,7 +69,10 @@
     border-color : #28a745 ;
 }
 
-
+.fa-exclamation-triangle{
+    float: right;
+    color: #C82829;
+}
 
 .fa-power-off{
 

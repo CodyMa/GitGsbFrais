@@ -1,46 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'profil/profil.html.twig' %}
 {% block body %}
     {% block stylsheet %}
         {{ parent() }}
-        <link rel="stylesheet" href="{{ asset('assets/css/styleProfil.css') }}">
-        <style>
-            /*nav {
-                background-color: red;
-                // TEST MERGE INTO CURRENT DEPUIS MASTER
-            }*/
-
-        </style>
+        <link rel="stylesheet" href="{{ asset('assets/css/styleGestionCompte.css') }}">
     {% endblock %}
 
     {% block header %}
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="{{ path('gsb_frais_accueil') }}">GsbFrais</a>
-
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('gsb_profil_homepage') }}">Accueil<span class="sr-only">(current)</span></a>
-                    </li>
-                    <!--<li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
-                    </li>-->
-                </ul>
-
-                <div class="my-0 my-lg-0" id="Np">
-                    {% block headerRight %}
-                        <a href="{{ path('gsb_frais_edit_user') }}">{{ app.session.get('nom') }} {{ app.session.get('prenom') }} <i class="far fa-user"></i></a>
-                        {#<a>{{ nom }} {{ prenom }}  <i class="far fa-user"></i></a>#}
-                    {% endblock %}
-                </div>
-
-            </div>
-        </nav>
+        {{ parent() }}
     {% endblock header%}
     {% block main %}
         <div class="container-fluid">
@@ -53,7 +19,7 @@
                                     <div id="navLateral">
                                         <ul class="nav nav-pills flex-column">
                                             <li class="nav-item" >
-                                                <a class="nav-link active" href="{{ path('gsb_profil_homepage') }}">Menu<i class="fas fa-angle-left"></i><span class="sr-only">(current)</span></a>
+                                                <a class="nav-link" href="{{ path('gsb_profil_homepage') }}">Menu<i class="fab fa-elementor"></i></a>
                                             </li>
                                         </ul>
                                         <hr>
@@ -66,7 +32,7 @@
                                                 <a class="nav-link" href="{{ path('gsb_profil_afficher_mois') }}">Fiche du mois <i class="fas fa-book"></i></a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ path('gsb_profil_historique') }}">Historique <i class="fas fa-history"></i></a>
+                                                <a class="nav-link" href="{{ path('gsb_profil_historique') }}">Historique<i class="fas fa-history"></i></a>
                                             </li>
                                         </ul>
 
@@ -95,54 +61,76 @@
 
                 <div class="col-sm-9">
                     {% block contenu %}
-
-                        {% if modifCpt == true %}
-                            <div class="jumbotron jumbotron-fluid" style="padding: 3rem 3rem; margin-top: 5rem">
+                        {% if oldMdpInvalid == true %}
+                            <div class="jumbotron jumbotron-fluid" style="padding: 2rem 3rem; margin-top: 1rem">
                                 <div class="container contAlign">
 
                                     <table class="table">
                                         <tr class="table-danger" >
-                                            <td ><h4> Compte modifié avec succès </h4></td>
+                                            <td ><h4> Mot de passe actuel incorrect ! </h4></td>
                                         </tr>
                                     </table>
 
                                 </div>
                             </div>
 
-                        {% elseif modifMdp == true %}
-                            <div class="jumbotron jumbotron-fluid" style="padding: 3rem 3rem; margin-top: 5rem">
+                        {% elseif newMdpDontMatch == true %}
+                            <div class="jumbotron jumbotron-fluid" style="padding: 2rem 3rem; margin-top: 1rem">
                                 <div class="container contAlign">
 
                                     <table class="table">
                                         <tr class="table-danger" >
-                                            <td ><h4> Mot de passe modifié avec succès </h4></td>
+                                            <td ><h4> Les champs du nouveau mot de passe sont différents ! </h4></td>
                                         </tr>
                                     </table>
 
                                 </div>
                             </div>
-
-                        {% else %}
-
-                            <div class="jumbotron jumbotron-fluid" style="padding: 10rem 3rem">
-                                <div class="container contAlign">
-                                    <h1> Accueil </h1>
-
-                                    <h4> Bienvenue sur votre espace : </h4>
-
-                                    <h6> Gestion des frais de visites </h6>
-                                    <!--ee-->
-                                </div>
-                            </div>
-
                         {% endif %}
+                        <div class="container1">
+                            <div class="jumbotron jumbotron-fluid">
+                                <div class="container2">
+                                    <div class="container">
+                                        <h1>Gestionnaire de mot de passe</h1><br>
+                                        <div class="container-fluid">
+                                            {{ form_start(form) }}
 
+                                                <div class="form-group">
+                                                    {{ form_row(form.mdpOld) }}
+                                                </div>
+
+                                                <div class="form-group">
+                                                    {{ form_row(form.newMdp) }}
+                                                </div>
+
+                                                <div class="form-group">
+                                                    {{ form_row(form.newMdpBis) }}
+                                                </div>
+
+                                                <br>
+
+                                                <div id="divSave">
+                                                    <div class="row">
+                                                        <div class="col btn">
+                                                            {{ form_row(form.save) }}
+                                                        </div>
+                                                        <div class="col btn">
+                                                            {{ form_row(form.cancel) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {{ form_end(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     {% endblock contenu %}
                 </div>
-                <div class="col-sm-4 col-md-3">
-                    {% block affichage %}
-                    {% endblock affichage %}
-                </div>
+
+
+
+
             </div>
         </div>
     {% endblock %}

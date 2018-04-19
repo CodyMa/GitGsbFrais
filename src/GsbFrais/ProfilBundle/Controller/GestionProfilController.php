@@ -18,7 +18,43 @@ class GestionProfilController extends Controller
             'profil/profil.html.twig',
             array(
                 'nom' => $session->get('nom'),
-                'prenom' => $session->get('prenom')
+                'prenom' => $session->get('prenom'),
+                'modifCpt' => false,
+                'modifMdp' => false,
+            )
+        );
+    }
+
+    public function modifCptAction(Request $request)
+    {
+        $session = $request->getSession();
+        //echo $session->get('id');
+
+
+        return $this->render(
+            'profil/profil.html.twig',
+            array(
+                'nom' => $session->get('nom'),
+                'prenom' => $session->get('prenom'),
+                'modifCpt' => true,
+                'modifMdp' => false,
+            )
+        );
+    }
+
+    public function modifMdpAction(Request $request)
+    {
+        $session = $request->getSession();
+        //echo $session->get('id');
+
+
+        return $this->render(
+            'profil/profil.html.twig',
+            array(
+                'nom' => $session->get('nom'),
+                'prenom' => $session->get('prenom'),
+                'modifCpt' => false,
+                'modifMdp' => true,
             )
         );
     }

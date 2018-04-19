@@ -2,6 +2,15 @@ gsb_profil_homepage:
     path:     /profil
     defaults: { _controller: GsbFraisProfilBundle:GestionProfil:index }
 
+gsb_profil_homepage_modif:
+    path:     /profil1
+    defaults: { _controller: GsbFraisProfilBundle:GestionProfil:modifCpt }
+
+
+gsb_profil_homepage_modif_mdp:
+    path:     /profil2
+    defaults: { _controller: GsbFraisProfilBundle:GestionProfil:modifMdp }
+
 gsb_profil_saisie_frais:
     path:     /saisieFrais
     defaults: { _controller: GsbFraisProfilBundle:SaisirFrais:saisir}

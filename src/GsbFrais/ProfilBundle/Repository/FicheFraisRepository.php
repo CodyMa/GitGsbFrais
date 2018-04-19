@@ -43,7 +43,7 @@ class FicheFraisRepository extends \Doctrine\ORM\EntityRepository
             ->where("ff.idVisiteur = :idVis")//comparaison de l'identifiant du visiteur
             //PASSAGE DES PARAMETRES
             ->setParameter('idVis', $idVis)
-            ->orderBy('ff.date', 'ASC')
+            ->orderBy('ff.date', 'DESC')
             ->getQuery()
             ->getResult();
 
