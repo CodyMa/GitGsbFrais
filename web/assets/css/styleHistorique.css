@@ -1,3 +1,7 @@
 .jumbotron, .jumbotron-fluid{
     padding: 1rem 1rem;
 }
+
+#selection:hover{
+    background-color: lightgray;
+}

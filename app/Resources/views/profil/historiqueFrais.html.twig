@@ -40,7 +40,7 @@
                                         </li>
 
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Se déconnecter <i class="fas fa-power-off"></i></a>
+                                            <a class="nav-link" href="{{ path('gsb_frais_accueil_deco') }}">Se déconnecter <i class="fas fa-power-off"></i></a>
 
                                         </li>
                                     </ul>
@@ -57,7 +57,7 @@
             <div class="col-sm-5 col-md-5">
                 {% block contenu %}
                     <div style="padding: 1rem 1rem;" class="jumbotron jumbotron-fluid">
-                        <div class="container-fluid">
+                        <div class="container-fluid contAlign">
                             Sélection d'une fiche
                         </div>
                     </div>
@@ -66,12 +66,43 @@
                     {#SI PAS DE FICHES POUR L'UTILISATEUR #}
                     {% if fiches == null %}
                         <div style="padding: 10rem 1rem;" class="jumbotron jumbotron-fluid">
-                            <div class="container-fluid">
+                            <div class="container-fluid contAlign">
                                 Votre historique est vide
                             </div>
                         </div>
                         {#SINON AFFICHER LA LISTE DES FICHES #}
                     {% else %}
+
+                        <table class="table">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Période</th>
+                                <th scope="col">Justificatifs</th>
+                                <th scope="col">Montant validé</th>
+                                <th scope="col">Dernière modification</th>
+                                <th scope="col">Etat</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {#BOUCLE POUR FAIRE DEFILER LES RAPPORTS ET LES AFFICHERS#}
+                                {% for laFiche in fiches %}
+
+                                        <tr id="selection" style="cursor: pointer" onClick="location.href='{{ path( 'gsb_profil_historique_selection', {'date': laFiche['date'] | date('Y-m-d')} ) }}'">
+
+                                            <th scope="row">{{ loop.index }}</th>
+                                            <td>{{ laFiche['date'] | date('m/Y') }}</td>
+                                            <td>{{ laFiche['nbJustificatif'] }}</td>
+                                            <td>{{ laFiche['montantValide'] }}</td>
+                                            <td>{{ laFiche['dateModif'] | date('d/m/Y') }}</td>
+                                            <td>{{ laFiche['libelleEtat'] }}</td>
+
+                                        </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
                     {% endif %}
 
                 {% endblock contenu %}
@@ -81,7 +112,7 @@
 
                 {% block affichage %}
                     <div style="padding: 1rem 1rem;" class="jumbotron jumbotron-fluid">
-                        <div class="container-fluid">
+                        <div class="container-fluid contAlign">
                             Fiche sélectionnée
                         </div>
                     </div>
@@ -89,12 +120,165 @@
                     {#SI AUCUNE FICHE SELECTIONNEE #}
                     {% if selection == false %}
                         <div style="padding: 10rem 1rem;" class="jumbotron jumbotron-fluid">
-                            <div class="container-fluid">
+                            <div class="container-fluid contAlign">
                                 Aucune fiche n'a été sélectionnée pour le moment
                             </div>
                         </div>
                     {#SINON AFFICHER LA FICHE SELECTIONNEE #}
                     {% else %}
+                        {% if dateModif %}
+                            <div class="container2">
+                                {#{{ dump(ficheFrais[0]) }}#}
+                                <h5>Dernière modification le : {{ dateModif | date("d/m/Y") }}</h5>
+                            </div>
+                        {% endif %}
+                        <div class="jumbotron jumbotron-fluid">
+
+                            <div class="container">
+                                <h1> Fiche des frais </h1>
+                                <h3>{{ dateDebut }} - {{ dateFin }}</h3>
+                                <!--ee-->
+                            </div>
+                        </div>
+
+                        {#TOTAUX DE LA FICHE#}
+                        <table class="table">
+                            <tr>
+                                <th class="table-info" id="bordureLeft" scope="row">{{ "état " | title }}de la fiche : </th>
+                                <td colspan="3" class="table-info" id="bordureRight" >{{ etat }}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-info" id="bordureLeft" scope="row">Total des frais : </th>
+                                <td class="table-info" id="bordureRight" >{{ totalFiche }}€</td>
+                                <th class="table-success" id="bordureLeft" scope="row">Frais validés : </th>
+                                <td class="table-success" id="bordureRight" >{{ totalValide }}€</td>
+                            </tr>
+                        </table>
+
+
+
+
+                        <br>
+
+                        <div class="container">
+                            <h3>Récapitulatif des frais forfaitisés</h3>
+                        </div>
+                        {# S'IL Y A DES FRAIS FORFAIT A AFFICHER#}
+                        {% if lesFraisForfaits %}
+
+                            {#CREATION TABLE RESPONSIVE#}
+                            <table class="table">
+                                <thead class="thead-light">
+                                <tr>
+                                    {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE L'INTITULE DU FRAIS FORFAIT#}
+                                    <th scope="col">{{ "forfait" | title }}</th>
+                                    {% for leFraisForfaits  in lesFraisForfaits %}
+                                        <th scope="col">{{ leFraisForfaits["libelleFraisForfait"] | title }}</th>
+                                    {% else %}
+                                        La liste est Vide
+                                    {% endfor %}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LE MONTANT DU FRAIS FORFAIT#}
+                                    <th scope="row">{{ "prix unitaire" | upper }}</th>
+                                    {% for leFraisForfaits  in lesFraisForfaits %}
+                                        <td>{{ leFraisForfaits["montantFraisForfait"] }}€</td>
+                                    {% else %}
+                                        La liste est Vide
+                                    {% endfor %}
+                                </tr>
+                                <tr>
+                                    {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LA QUANTITE DU FRAIS FORFAIT#}
+                                    <th scope="row">{{ "quantité" | upper }}</th>
+                                    {% for leFraisForfaits  in lesFraisForfaits %}
+                                        <td>{{ leFraisForfaits["quantite"] }}</td>
+                                    {% else %}
+                                        La liste est Vide
+                                    {% endfor %}
+                                </tr>
+                                <tr>
+                                    {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LE TOTAL DES FORFAIT#}
+                                    <th scope="row">{{ "frais" | upper }}</th>
+                                    {% for leFraisForfaits  in lesFraisForfaits %}
+                                        <td>{{ leFraisForfaits["quantite"] * leFraisForfaits["montantFraisForfait"] }}€ </td>
+                                    {% else %}
+                                        La liste est Vide
+                                    {% endfor %}
+                                </tr>
+                                <tr class="bg-success" id="bordure">
+                                    {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LE TOTAL DES FRAIS FORFAIT#}
+                                    <th scope="row" >{{ "total" | upper }}</th>
+                                    <td id="placeTotal" colspan="{{ lesFraisForfaits | length }}">{{ totalFraisForfait }}€ </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            {# S'IL N'Y A PAS DE FRAIS FORFAIT A AFFICHER -> proposer renvoie page de saisie #}
+                        {% else %}
+                            <div class="jumbotron jumbotron-fluid">
+                                <div class="container">
+
+                                    <h4>Aucun frais forfaitaire n'a été ajouté pour le moment</h4>
+                                    <!--ee-->
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <br><hr><br>
+
+                        <div class="container">
+                            <h3>Récapitulatif des frais non forfaitisés</h3>
+                        </div>
+                        {# S'IL Y A DES FRAIS HORS FORFAIT A AFFICHER#}
+                        {% if lesFraisHorsForfaits %}
+                            {#CREATION TABLE RESPONSIVE#}
+                            <table class="table">
+                                <thead class="thead-light">
+                                <tr>
+                                    {#HEADER TABLE#}
+                                    <th scope="col"></th>
+                                    <th scope="col">{{ "date" | title }}</th>
+                                    <th scope="col">{{ "description" | title }}</th>
+                                    <th scope="col">{{ "montant" | title }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {#POUR CHAQUE FRAIS HORS FORFAIT ON AFFICHE LES INFOS#}
+                                {% for leFraisHorsForfaits  in lesFraisHorsForfaits %}
+                                    <tr>
+                                        <th scope="row">{{ loop.index }}</th>
+                                        <td>{{ leFraisHorsForfaits["date"] | date('d/m/Y') }}</td>
+                                        <td>{{ leFraisHorsForfaits["libelle"] }}</td>
+                                        <td>{{ leFraisHorsForfaits["montant"] }}€</td>
+                                    </tr>
+                                {% else %}
+                                    La liste est Vide
+                                {% endfor %}
+
+                                <tr class="bg-success" id="bordure">
+                                    {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LE TOTAL DES FRAIS FORFAIT#}
+                                    <th scope="row" >{{ "total" | upper }}</th>
+                                    <td id="placeTotal" colspan="3">{{ totalFraisNonForfait }}€ </td>
+                                </tr>
+                                <tr class="bg-info" id="bordure">
+                                    {#POUR CHAQUE FRAIS FORFAIT ON AFFICHE LE TOTAL DES FRAIS FORFAIT#}
+                                    <th scope="row" colspan="2">{{ "Nombre de justificatifs fournis" | upper }}</th>
+                                    <td colspan="2">{{ nbJustificatif }} </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            {# S'IL N'Y A PAS DE FRAIS HORS FORFAIT A AFFICHER -> proposer renvoie page de saisie #}
+                        {% else %}
+                            <div class="jumbotron jumbotron-fluid">
+                                <div class="container">
+
+                                    <h4>Aucun frais non forfaitisé n'a été ajouté pour le moment</h4>
+                                    <!--ee-->
+                                </div>
+                            </div>
+                        {% endif %}
                     {% endif %}
 
                 {% endblock affichage %}

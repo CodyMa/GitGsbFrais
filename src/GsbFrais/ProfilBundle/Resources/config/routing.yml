@@ -15,5 +15,5 @@ gsb_profil_historique:
     defaults: { _controller: GsbFraisProfilBundle:Historique:selectionner}
 
 gsb_profil_historique_selection:
-    path:     /historiqueSelection
+    path:     /historiqueSelection/{date}
     defaults: { _controller: GsbFraisProfilBundle:Historique:visu}

@@ -1,3 +1,7 @@
 gsb_frais_connexion:
     path:     /connexion
     defaults: { _controller: GsbFraisConnexionBundle:Connexion:register }
+
+gsb_frais_edit_user:
+    path:     /editU
+    defaults: { _controller: GsbFraisConnexionBundle:GestionCompte:editerUser }

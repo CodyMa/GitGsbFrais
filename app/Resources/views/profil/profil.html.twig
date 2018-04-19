@@ -32,7 +32,7 @@
 
                 <div class="my-0 my-lg-0" id="Np">
                     {% block headerRight %}
-                        <a href="#">{{ app.session.get('nom') }} {{ app.session.get('prenom') }} <i class="far fa-user"></i></a>
+                        <a href="{{ path('gsb_frais_edit_user') }}">{{ app.session.get('nom') }} {{ app.session.get('prenom') }} <i class="far fa-user"></i></a>
                         {#<a>{{ nom }} {{ prenom }}  <i class="far fa-user"></i></a>#}
                     {% endblock %}
                 </div>
@@ -77,7 +77,7 @@
                                             </li>
 
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">Se déconnecter <i class="fas fa-power-off"></i></a>
+                                                <a class="nav-link" href="{{ path('gsb_frais_accueil_deco') }}">Se déconnecter <i class="fas fa-power-off"></i></a>
 
                                             </li>
                                         </ul>
@@ -94,9 +94,13 @@
                 <div class="col-sm-9">
                     {% block contenu %}
 
-                        <div class="jumbotron jumbotron-fluid">
-                            <div class="container">
-                                <h1> Page d'accueil profil </h1>
+                        <div class="jumbotron jumbotron-fluid" style="padding: 10rem 3rem">
+                            <div class="container contAlign">
+                                <h1> Accueil </h1>
+
+                                <h4> Bienvenue sur votre espace : </h4>
+
+                                <h6> Gestion des frais de visites </h6>
                                 <!--ee-->
                             </div>
                         </div>

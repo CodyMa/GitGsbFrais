@@ -25,4 +25,16 @@ class VisiteurRepository extends \Doctrine\ORM\EntityRepository
         return $queryBuilder;
     }
 
+    public function getVisiteur ($idVis){
+        $queryBuilder = $this->_em->createQueryBuilder()
+            ->select('v') //v l'alias de visiteur
+            ->from( $this->_entityName, 'v') // FROM Visteur
+            ->where("v.id = :id") // comparaison id
+            ->setParameter('id', $idVis) // remplace :login dans la comparaison
+            ->getQuery()
+            ->getResult();
+
+        return $queryBuilder;
+    }
+
 }
