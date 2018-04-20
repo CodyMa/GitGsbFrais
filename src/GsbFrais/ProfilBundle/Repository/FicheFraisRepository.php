@@ -1,6 +1,7 @@
 <?php
 
 namespace GsbFrais\ProfilBundle\Repository;
+use Doctrine\ORM\NonUniqueResultException;
 
 
 /**
@@ -48,6 +49,32 @@ class FicheFraisRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
 
         return $queryBuilder;
+    }
+
+    public function getLaFicheFraisExist($idVisiteur, $mois, $annee){
+
+        try {
+            $queryBuilder = $this->createQueryBuilder('ff')
+                //->select('ff') //ff = alias de fiche frais => selectionner tous les champs
+                //->from( $this->_entityName, 'ff') //FROM FicheFrais
+                ->join('ff.idEtat', 'e')
+                ->addSelect('e')
+                ->where("ff.idVisiteur = :idVisiteur")//comparaison de l'identifiant du visiteur
+                ->andWhere("MONTH(ff.date) = :month")//comparaison mois
+                ->andWhere("YEAR(ff.date) = :year")//comparaison annee
+                //PASSAGE DES PARAMETRES
+                ->setParameter('idVisiteur', $idVisiteur)
+                ->setParameter('month', $mois)
+                ->setParameter('year', $annee)
+                ->getQuery()
+                ->getOneOrNullResult();
+        } catch (NonUniqueResultException $e) {
+            dump($e->getMessage());
+            return null;
+        }
+
+        return $queryBuilder;
+
     }
 
 

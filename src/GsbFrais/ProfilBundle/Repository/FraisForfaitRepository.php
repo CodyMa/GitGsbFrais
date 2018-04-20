@@ -24,4 +24,6 @@ class FraisForfaitRepository extends \Doctrine\ORM\EntityRepository
         //Retour de la réponse
         return $maRequete;
     }
+
+
 }

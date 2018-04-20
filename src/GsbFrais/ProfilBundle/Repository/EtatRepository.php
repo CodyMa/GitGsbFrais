@@ -10,4 +10,17 @@ namespace GsbFrais\ProfilBundle\Repository;
  */
 class EtatRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getEtat($idEtat){
+        $queryBuilder = $this->_em->createQueryBuilder()
+            ->select('e')
+            ->from($this->_entityName, 'e')
+            ->where('e.id = :id')
+            ->setParameter('id', $idEtat)
+            ->getQuery()
+            ->getResult();
+
+        return $queryBuilder;
+    }
+
 }

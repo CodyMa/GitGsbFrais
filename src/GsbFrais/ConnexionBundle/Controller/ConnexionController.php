@@ -3,6 +3,8 @@
 namespace GsbFrais\ConnexionBundle\Controller;
 
 use GsbFrais\ConnexionBundle\Entity\Visiteur;
+use GsbFrais\ProfilBundle\Entity\FicheFrais;
+use GsbFrais\ProfilBundle\Entity\LigneFraisForfait;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -21,10 +23,19 @@ class ConnexionController extends Controller
         return $this->render('connexion/connexion.html.twig');
     }
 
+
+    public function array_empty($a)
+    {
+        foreach($a as $k => $v)
+            if(empty($v))
+                return false;
+        return true;
+    }
+
     public function registerAction(Request $request)
     {
         // creates a task and gives it some dummy data for this example
-        $visiteur = new Visiteur();
+
 
         $form = $this->createFormBuilder(array('allow_extra_field' => true))
             ->add('login', TextType::class, array('label'=> 'Identifiant' ,'attr' => array('class'=> 'form-control')))
@@ -50,8 +61,59 @@ class ConnexionController extends Controller
                 dump($visiteur); //fais un dump du visiteur
 
                 if(!empty($visiteur)){
+                    //$visiteurObj = new Visiteur();
+                    $idVis= $visiteur[0]->getId();
+                    $month = date("m");
+                    $year = date("Y");
+
+                    $ficheFrais = $em->getRepository("GsbFraisProfilBundle:FicheFrais")->getLaFicheFraisExist($idVis,$month,$year);
+                    $fraisForfait = $em->getRepository("GsbFraisProfilBundle:FraisForfait")->getLesFraisForfait();
+
+                    dump($ficheFrais);
+
 
                     $session = new Session();
+
+                    if($ficheFrais === null){
+                        $ficheFraisCreer = new FicheFrais();
+
+
+                        $etat = $em->getRepository("GsbFraisProfilBundle:Etat")->getEtat(3);
+                        $idVis = intval($visiteur[0]->getId()) ;
+                        $dateNow = new \DateTime("now");
+
+                        dump($dateNow);
+
+
+
+                        $ficheFraisCreer->setIdVisiteur($visiteur[0]);
+                        $ficheFraisCreer->setDate($dateNow);
+                        $ficheFraisCreer->setIdVisiteurDate($idVis.date("Y-m-d"));
+                        $ficheFraisCreer->setNbJustificatif(0);
+                        $ficheFraisCreer->setMontantValide(0);
+                        $ficheFraisCreer->setDateModif($dateNow);
+                        $ficheFraisCreer->setIdEtat($etat[0]);
+
+
+                        if(!$em->contains($ficheFraisCreer)){
+
+                        foreach ($fraisForfait as $unFraisForfait){
+
+                                $ligneFraisForfait = new LigneFraisForfait();
+
+                                $ligneFraisForfait->setIdFicheFrais($ficheFraisCreer);
+                                $ligneFraisForfait->setIdFraisForfait($unFraisForfait);
+                                $ligneFraisForfait->setQuantite(0);
+
+
+                                $em->persist($ligneFraisForfait);
+
+                            }
+
+                            $em->persist($ficheFraisCreer);
+                            $em->flush();
+                       }
+                    }
 
                     foreach ($visiteur as $unVisiteur){
                         $session->set('id', $unVisiteur->getId());
@@ -59,8 +121,9 @@ class ConnexionController extends Controller
                         $session->set('prenom', $unVisiteur->getPrenom());
                         dump($session);
                         return $this->redirectToRoute('gsb_profil_homepage');
-
                     }
+
+
                 }
                 else{
                     return $this->render('connexion/connexion.html.twig', array(
