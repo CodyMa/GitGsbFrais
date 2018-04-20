@@ -22,6 +22,24 @@ class LigneFraisHorsForfaitRepository extends \Doctrine\ORM\EntityRepository
             ->addSelect('ff')
             //:idFiche = $idFicheFrais
             ->setParameter('idFiche', $idFicheFrais)
+            ->orderBy('lfhf.date', 'DESC')
+            //Envoie requete
+            ->getQuery()
+            //Recup resultat sous forme d'objet
+            ->getResult();
+
+        //Retour de la réponse
+        return $maRequete;
+    }
+
+    public function getLeFraisHorsForfaitMois($idHorsForfait){
+        //création de ma requête en indiquant l'alias utilisé l'entité "LigneFraisHorsForfait"
+        $maRequete = $this->createQueryBuilder('lfhf')
+            ->join('lfhf.idFicheFrais', 'ff')
+            ->addSelect('ff')
+            ->where('lfhf.id = :id')
+            ->setParameter('id', $idHorsForfait)
+            ->orderBy('lfhf.date', 'DESC')
             //Envoie requete
             ->getQuery()
             //Recup resultat sous forme d'objet

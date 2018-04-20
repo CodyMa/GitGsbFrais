@@ -26,3 +26,7 @@ gsb_profil_historique:
 gsb_profil_historique_selection:
     path:     /historiqueSelection/{date}
     defaults: { _controller: GsbFraisProfilBundle:Historique:visu}
+
+gsb_suppression:
+    path:     /saisieFrais1/{idHorsForfait}
+    defaults: { _controller: GsbFraisProfilBundle:SaisirFrais:supprimer}
