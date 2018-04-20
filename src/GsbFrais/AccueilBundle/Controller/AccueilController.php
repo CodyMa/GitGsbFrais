@@ -13,7 +13,6 @@ class AccueilController extends Controller
         $session = $request->getSession();
         // ici ce pour effacer toutes les sessions
         $session->clear();
-
         return $this->render('accueil/accueil.html.twig');
     }
 

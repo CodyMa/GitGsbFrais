@@ -6,7 +6,9 @@
         <style>
             /*nav {
                 background-color: red;
+                // TEST MERGE INTO CURRENT DEPUIS MASTER
             }*/
+
         </style>
     {% endblock %}
 
@@ -32,7 +34,7 @@
 
                 <div class="my-0 my-lg-0" id="Np">
                     {% block headerRight %}
-                        <a href="#">{{ app.session.get('nom') }} {{ app.session.get('prenom') }} <i class="far fa-user"></i></a>
+                        <a href="{{ path('gsb_frais_edit_user') }}">{{ app.session.get('nom') }} {{ app.session.get('prenom') }} <i class="far fa-user"></i></a>
                         {#<a>{{ nom }} {{ prenom }}  <i class="far fa-user"></i></a>#}
                     {% endblock %}
                 </div>
@@ -73,11 +75,11 @@
                                         <ul class="nav nav-pills flex-column">
 
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">Changer de mot de passe <i class="fas fa-key"></i></a>
+                                                <a class="nav-link" href="{{ path('gsb_frais_edit_mdp') }}">Changer de mot de passe <i class="fas fa-key"></i></a>
                                             </li>
 
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">Se déconnecter <i class="fas fa-power-off"></i></a>
+                                                <a class="nav-link" href="{{ path('gsb_frais_accueil_deco') }}">Se déconnecter <i class="fas fa-power-off"></i></a>
 
                                             </li>
                                         </ul>
@@ -94,12 +96,46 @@
                 <div class="col-sm-9">
                     {% block contenu %}
 
-                        <div class="jumbotron jumbotron-fluid">
-                            <div class="container">
-                                <h1> Page d'accueil profil </h1>
-                                <!--ee-->
+                        {% if modifCpt == true %}
+                            <div class="jumbotron jumbotron-fluid" style="padding: 3rem 3rem; margin-top: 5rem">
+                                <div class="container contAlign">
+
+                                    <table class="table">
+                                        <tr class="table-danger" >
+                                            <td ><h4> Compte modifié avec succès </h4></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
                             </div>
-                        </div>
+
+                        {% elseif modifMdp == true %}
+                            <div class="jumbotron jumbotron-fluid" style="padding: 3rem 3rem; margin-top: 5rem">
+                                <div class="container contAlign">
+
+                                    <table class="table">
+                                        <tr class="table-danger" >
+                                            <td ><h4> Mot de passe modifié avec succès </h4></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            </div>
+
+                        {% else %}
+
+                            <div class="jumbotron jumbotron-fluid" style="padding: 10rem 3rem">
+                                <div class="container contAlign">
+                                    <h1> Accueil </h1>
+
+                                    <h4> Bienvenue sur votre espace : </h4>
+
+                                    <h6> Gestion des frais de visites </h6>
+                                    <!--ee-->
+                                </div>
+                            </div>
+
+                        {% endif %}
 
                     {% endblock contenu %}
                 </div>
