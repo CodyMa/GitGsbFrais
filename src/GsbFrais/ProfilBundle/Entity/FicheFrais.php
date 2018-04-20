@@ -72,7 +72,7 @@ class FicheFrais implements ArrayAccess
     private $montantValide;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
      * @ORM\Column(name="dateModif", type="date", nullable=true)
      */
@@ -147,7 +147,7 @@ class FicheFrais implements ArrayAccess
     /**
      * Set dateModif
      *
-     * @param \DateTime $dateModif
+     * @param \Date $dateModif
      *
      * @return FicheFrais
      */
@@ -161,7 +161,7 @@ class FicheFrais implements ArrayAccess
     /**
      * Get dateModif
      *
-     * @return \DateTime
+     * @return \Date
      */
     public function getDateModif()
     {
@@ -220,7 +220,7 @@ class FicheFrais implements ArrayAccess
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param \Date $date
      *
      * @return FicheFrais
      */
@@ -234,7 +234,7 @@ class FicheFrais implements ArrayAccess
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return \Date
      */
     public function getDate()
     {

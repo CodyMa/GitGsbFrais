@@ -4,5 +4,5 @@ gsb_frais_accueil:
 
 
 gsb_frais_accueil_deco:
-    path:     /
+    path:     /gsb
     defaults: { _controller: GsbFraisAccueilBundle:Accueil:deconnexion }
